@@ -12,11 +12,16 @@
 Proyecto final, crear una API 100%
 
 Nivel 1
-Es un juego de dados se juega con dos dados. En caso de que el resultado de la suma de los dos dados sea 7, la partida es ganada, si no es perdida. Un jugador/a bote ver un listado de todas las tiradas que ha hecho y el porcentaje de éxito.
-Para poder jugar al juego y realizar una tirada, un usuario/aria se tiene que registrar con un nombre no repetido. Al crearse, se le asigna un identificador numérico único y una fecha de registro. Si el usuario/aria así lo desea, puedes no añadir ningún nombre y se llamará “ANÓNIMO”. Puede haber más de un jugador “ANÓNIMO”.
-Cada jugador/a bote ver un listado de todas las tiradas que ha hecho, con el valor de cada dado y si se ha ganado o no la partida. Además, puede saber su porcentaje de éxito por todas las tiradas que ha hecho.
+Es un juego de dados se juega con dos dados. En caso de que el resultado de la suma de los dos dados sea 7, la partida es ganada, si no es perdida. 
+Un jugador/a bote ver un listado de todas las tiradas que ha hecho y el porcentaje de éxito.
+Para poder jugar al juego y realizar una tirada, un usuario/aria se tiene que registrar con un nombre no repetido. Al crearse, se le asigna un 
+identificador numérico único y una fecha de registro. Si el usuario/aria así lo desea, puedes no añadir ningún nombre y se llamará “ANÓNIMO”.
+Puede haber más de un jugador “ANÓNIMO”.
+Cada jugador/a bote ver un listado de todas las tiradas que ha hecho, con el valor de cada dado y si se ha ganado o no la partida. Además, puede saber
+su porcentaje de éxito por todas las tiradas que ha hecho.
 No se puede eliminar una partida en concreto, pero sí que se puede eliminar todo el listado de tiradas por un jugador/a.
-El software tiene que permitir listar todos los jugadores/se que hay al sistema, el porcentaje de éxito de cada jugador/a y el porcentaje de éxito mediano de todos los jugadores/se en el sistema.
+El software tiene que permitir listar todos los jugadores/se que hay al sistema, el porcentaje de éxito de cada jugador/a y el porcentaje de éxito
+mediano de todos los jugadores/se en el sistema.
 El software tiene que respetar los principales patrones de diseño.
 **NOTAS**
 Persistencia: utiliza como base de datos MongoDB. 
@@ -83,7 +88,7 @@ By eliminar el jugador N6(Oso)
   - [Jaxx- Spring Boot | DTOs con Spring Data JPA y Spring Boot-Parte 2 ](https://www.youtube.com/watch?v=HvLbN9L6_Hg)
 
 - MongoDB
-  - [Roberto Crespo- Spring Data MongoDB: Acceso a datos – Cómo construir microservicios con Spring Boot (III) ]https://robertocrespo.net/implementar-microservicios-spring-boot-iii-acceso-datos-mongodb-data/
+  - [Roberto Crespo- Spring Data MongoDB: Acceso a datos – Cómo construir microservicios con Spring Boot (III)]https://robertocrespo.net/implementar-microservicios-spring-boot-iii-acceso-datos-mongodb-data/
 
 - JWT - SpringBoot Security
   - [La Tecnologia Avanza - Spring Boot Token based Authentication with Spring Security & JWT](https://www.youtube.com/watch?v=ZzpDyIJizjo)
@@ -96,19 +101,24 @@ La estructura de este proyecto parece sigue este patrón.
 
 Aquí te explicaré cómo funciona cada componente:
 PAQUETE AUTH/
--CLASE AuthenticationController: Este es el controlador que maneja las solicitudes de autenticación. Recibe las credenciales del usuario (nombre de usuario y contraseña) y las pasa al servicio de autenticación para su procesamiento.
+-CLASE AuthenticationController: Este es el controlador que maneja las solicitudes de autenticación. Recibe las credenciales del usuario
+(nombre de usuario y contraseña) y las pasa al servicio de autenticación para su procesamiento.
 
--CLASES AuthenticationRequest y AuthenticationResponse: Estas clases representan los objetos de solicitud y respuesta utilizados en el proceso de autenticación. La solicitud contiene las credenciales del usuario y la respuesta contiene el token de autenticación JWT.
+-CLASES AuthenticationRequest y AuthenticationResponse: Estas clases representan los objetos de solicitud y respuesta utilizados en el proceso de autenticación.
+ La solicitud contiene las credenciales del usuario y la respuesta contiene el token de autenticación JWT.
 
--CLASE AuthenticationService: Este es el servicio que maneja la lógica de autenticación. Utiliza el servicio de usuario para verificar las credenciales del usuario y genera un token JWT si las credenciales son válidas.
+-CLASE AuthenticationService: Este es el servicio que maneja la lógica de autenticación. Utiliza el servicio de usuario para verificar las credenciales
+del usuario y genera un token JWT si las credenciales son válidas.
 
 -CLASE RegisterRequest: Esta clase representa la solicitud de registro de un nuevo usuario. Contiene los detalles necesarios para crear una nueva cuenta de usuario.
 PAQUETE CONFIG/
 
--CLASES ApplicationConfig y SecurityConfig: Estas clases contienen la configuración de la aplicación y la seguridad, respectivamente. Proporcionan la configuración necesaria para Spring Boot y Spring Security, incluyendo la configuración de los filtros de seguridad, los servicios de autenticación y las rutas de la API.
+-CLASES ApplicationConfig y SecurityConfig: Estas clases contienen la configuración de la aplicación y la seguridad, respectivamente. Proporcionan la configuración
+ necesaria para Spring Boot y Spring Security, incluyendo la configuración de los filtros de seguridad, los servicios de autenticación y las rutas de la API.
 
 PAQUETE JWT/
--CLASES JwtAuthenticationFilter y JwtService: El filtro JwtAuthenticationFilter intercepta las solicitudes HTTP y extrae el token JWT de la cabecera de autorización. Luego, utiliza el servicio JwtService para validar el token y establecer la autenticación en el contexto de seguridad de Spring.
+-CLASES JwtAuthenticationFilter y JwtService: El filtro JwtAuthenticationFilter intercepta las solicitudes HTTP y extrae el token JWT de la cabecera de autorización.
+ Luego, utiliza el servicio JwtService para validar el token y establecer la autenticación en el contexto de seguridad de Spring.
 
 PAQUETE REPOSITORY/
 -INTERFACE UserRepository: Esta interfaz extiende de JpaRepository y proporciona métodos para interactuar con la base de datos de usuarios.
@@ -116,6 +126,9 @@ PAQUETE REPOSITORY/
 PAQUETE USER/
 -ENUN Role y la CLASE User: Estas clases representan los roles y los usuarios en tu aplicación. Proporcionan los detalles necesarios para la autenticación y la autorización, como el nombre de usuario, la contraseña y los roles del usuario.
 *********************************************************************************************************************************************************************************
-En resumen, la seguridad en Spring Boot se maneja principalmente a través de la autenticación basada en tokens JWT. Cuando un usuario se autentica con éxito, el servidor genera un token JWT que el usuario debe incluir en las cabeceras de autorización de sus solicitudes HTTP subsiguientes. Este token es validado por el filtro JwtAuthenticationFilter en cada solicitud, y si es válido, la autenticación del usuario se establece en el contexto de seguridad de Spring.
+En resumen, la seguridad en Spring Boot se maneja principalmente a través de la autenticación basada en tokens JWT.
+Cuando un usuario se autentica con éxito,el servidor genera un token JWT que el usuario debe incluir en las cabeceras
+de autorización de sus solicitudes HTTP subsiguientes. Este token es validado por el filtro JwtAuthenticationFilter
+en cada solicitud, y si es válido, la autenticación del usuario se establece en el contexto de seguridad de Spring.
 
 
