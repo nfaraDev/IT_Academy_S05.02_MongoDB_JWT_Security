@@ -1,11 +1,11 @@
-# IT_Academy_S05.02_MongoDB_JWT_Security
+# Spring Boot, Hibernate, MongoDB, Security,JWT, Postman
 # 
 <p >
   <img src="src/main/resources/images/logos.png" width="100" />
 
 </p>
 
-## Spring Boot, Hibernate, MongoDB, Security,JWT, Postman
+## Proyecto
 
 ### Description
 
