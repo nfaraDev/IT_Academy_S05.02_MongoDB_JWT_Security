@@ -1,4 +1,4 @@
-# Spring Boot, Hibernate, MongoDB, Security,JWT, Postman
+# Spring Boot, Hibernate, MongoDB, Security, JWT, Postman
 # 
 <p >
   <img src="src/main/resources/images/logos.png" width="100" />
